@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .hamburger{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        span{
+            display: block;
+            height: 3px;
+            border: 3px solid black;
+            width: 30px;
+            transition: all 0.3s ease;
+            /* background-color: #333; */
+            
+
+        }
+        .menu{
+            display: none;
+            
+        }
+        .menu.open{
+            display: block;
+        }
+        .menu-ul{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            height: 80vh;
+            list-style: none;
+            background-color: burlywood;
+            width: 15%;
+        }
+        .menu-ul a{
+            text-decoration: none;
+        }
+        .menu-ul li a{
+          font-size: 1.3rem;
+          color: rgb(65, 33, 182);
+        }
+        .menu-ul li a:hover{
+            color: red;
+        }
+        
+    </style>
+</head>
+<body>
+<div class="hamburger" id="hamburger">
+    <span ></span>
+    <span></span>
+    <span></span>
+</div>
+<div class="menu" id="menu">
+    <ul class="menu-ul">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Service</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+    </ul>
+</div>
+<script>
+    let changer=document.getElementById('hamburger');
+    function magic(){
+        // this.classList.toggle('open');
+        document.getElementById('menu').classList.toggle('open');
+    }
+    changer.addEventListener('click',magic);
+</script>
+</body>
+</html>
