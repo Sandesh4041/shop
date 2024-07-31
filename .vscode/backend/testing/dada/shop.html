@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .container{
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .card-list {
+            text-align: center;
+            margin: auto;
+            margin-top: 1rem;
+            border: 1px solid red;
+            width: 30%;
+            height: 16rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card-list button {
+            background-color: blue;
+            color: white;
+            padding: 0.4rem;
+            margin: auto;
+            border-radius: 3px;
+        }
+
+        .card-list button:hover {
+            background-color: red;
+            color: white;
+        }
+
+        .card-list img {
+            margin: auto;
+            width: 100px;
+            height: 100px;
+        }
+
+        .result-ul {
+            text-align: center;
+            margin: auto;
+            margin-top: 20px;
+            border: 1px solid red;
+            width: 50%;
+            height: 16rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            list-style: none;
+
+        }
+        .result-ul li img{
+            margin: auto;
+            width: 100px;
+            height: 100px;
+        }
+       
+        .result{
+            display: none;
+            margin: auto;
+        }
+        
+        .empty-cart-message {
+            text-align: center;
+            font-size: 1.2rem;
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="card-list" data-name="frog" data-img="frogy.jpg" data-price="10">
+            <h2>ninja</h2>
+            <img src="frogy.jpg" alt="ninja">
+            <p id="dollor">price:$10</p>
+            <button onclick="show(this)">Add to cart</button>
+        </div>
+        <div class="card-list" data-name="ninja" data-img="ninja.jpg" data-price="100">
+            <h2>ninja</h2>
+            <img src="ninja.jpg" alt="ninja">
+            <p id="dollor">price:$100</p>
+            <button onclick="show(this)">Add to cart</button>
+        </div>
+    </div>
+        <button id="showCart">show cart</button>
+        <div class="result" id="result"></div>
+    <script>
+        let total = 0;
+        let quantity = 0;
+        function show(button) {
+            let card = button.closest('.card-list');
+            var name = card.getAttribute('data-name');
+            var price = card.getAttribute('data-price');
+            var numericPrice = parseFloat(price);
+            var image = card.getAttribute('data-img');
+            // let price=document.getElementById('dollor').textContent;
+            // let numericPrice = parseFloat(price.match(/\$([\d.]+)/)[1]);
+            total += numericPrice;
+            quantity += 1;
+
+            let result = document.getElementById('result');
+            // result.innerHTML = "";
+            var newdiv = document.createElement('div');
+            newdiv.classList.add('item');
+            var ul = document.createElement('ul');
+            ul.classList.add('result-ul');
+            //  price=`price:$${total}`;
+            console.log(price);
+            let array = [`${name}`, `<img src="${image}">`, `price:$${total.toFixed(2)}`, `quantity:${quantity}`];
+            for (let i = 0; i < array.length; i++) {
+                var li = document.createElement('li');
+                if (i === 1) {
+                    li.innerHTML = array[i];
+                }
+                else {
+                    li.textContent = array[i];
+                }
+
+                ul.appendChild(li);
+            }
+            newdiv.appendChild(ul);
+            result.appendChild(newdiv);
+
+
+        };
+        document.getElementById('showCart').addEventListener('click',function(){
+            let result=document.getElementById('result');
+            let resultContent=result.querySelector('.item');
+            if(resultContent){
+               result.style.display= result.style.display==='none'||result.style.display===''?'block':'none';
+            }
+            else{
+                result.innerHTML='<div class="empty-cart-message">There is nothing in the cart</div>';
+                result.style.display='block';
+            }
+            // if(result.style.display==='none'||result.style.display===''){
+            //     result.style.display='block';
+            // }
+            // else{
+            //     result.style.display='none';
+            // }
+        });
+    </script>
+</body>
+
+</html>

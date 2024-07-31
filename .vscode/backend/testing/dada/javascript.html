@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .result{
+            display: none;
+        }
+        .result.open{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="btn-container" id="btn-contain">
+        <button  onclick="show('magic')">click me</button>
+       
+    </div>
+    <div class="result" id="result-changer">
+        <h1>hello everyone</h1>
+    </div>
+    <script>
+         let changer=document.getElementById('btn-contain');
+         let resultChanger=document.getElementById('result-changer');
+
+         function show(magic){
+             resultChanger.classList.toggle('open');
+             if(resultChanger.classList.contains('open')){
+                 resultChanger.innerHTML="";
+                let newdiv=document.createElement('div');
+             let ul=document.createElement('ul');
+             let arrayList=["item 1","item 2","item 3","item 4"];
+             for(let i=0; i<arrayList.length;i++){
+                let li=document.createElement('li');
+                li.textContent=arrayList[i];
+                ul.appendChild(li);
+             }
+             newdiv.appendChild(ul);
+             resultChanger.appendChild(newdiv);
+             }
+             else{
+                resultChanger.innerHTML=`<h1>bye bye</h1>`;
+             }
+             
+           
+
+         }
+
+
+        // changer.addEventListener('click',function(){
+        //     resultChanger.classList.toggle('open');
+        // })
+
+
+
+    </script>
+</body>
+</html>
